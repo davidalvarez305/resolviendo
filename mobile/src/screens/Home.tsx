@@ -15,8 +15,8 @@ const Home: React.FC = () => {
         icon={
           <SvgXml
             xml={language === 'Spanish' ? AMERICAN_FLAG : CUBAN_FLAG}
-            width="40%"
-            height="40%"
+            width="38%"
+            height="38%"
           />
         }
       />
