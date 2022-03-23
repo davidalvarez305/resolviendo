@@ -45,3 +45,11 @@ export const MONITOR_ICON = `
 </g>
 </svg>
 `;
+
+export const PRODUCT_CARD_STAR = `
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 250" width="250px" height="250px">
+<g id="surface15673570">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(58.431375%,64.705884%,65.098041%);fill-opacity:1;" d="M 51 243 C 50 243 49 242.5 48 242 C 46.5 241 45.5 238.5 46 236.5 L 68 154.5 L 2 101 C 0 100 -0.5 97.5 0 95.5 C 0.5 93.5 2.5 92 4.5 92 L 89.5 87.5 L 120 8 C 121 6.5 123 5 125 5 C 127 5 129 6.5 129.5 8 L 160 87.5 L 245 92 C 247 92 249 93.5 249.5 95.5 C 250 97.5 249.5 99.5 248 101 L 182 154.5 L 204 236.5 C 204.5 238.5 204 240.5 202 242 C 200.5 243 198 243.5 196.5 242 L 125 196 L 53.5 242 C 52.5 243 52 243 51 243 Z M 51 243 "/>
+</g>
+</svg>
+`;

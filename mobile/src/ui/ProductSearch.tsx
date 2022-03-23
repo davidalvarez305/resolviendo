@@ -1,11 +1,10 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Text} from 'react-native-svg';
+import {View, Text} from 'react-native';
 
 const ProductSearch: React.FC = () => {
   return (
     <View>
-      <Text>Product Card</Text>
+      <Text>Product Search</Text>
     </View>
   );
 };

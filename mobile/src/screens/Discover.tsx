@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View} from 'react-native';
 import {Text} from 'react-native-svg';
-import useLanguageHook from '../hooks/useLanguageHook';
+import {LanguageContext} from '../context/LanguageContext';
 
 const Discover: React.FC = () => {
-  const {language, changeLanguage} = useLanguageHook();
+  const {language} = useContext(LanguageContext);
   return (
     <View>
       <Text>{language === 'Spanish' ? 'Busqueda' : 'Search'}</Text>
