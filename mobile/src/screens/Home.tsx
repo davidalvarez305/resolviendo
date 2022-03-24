@@ -5,7 +5,7 @@ import {AMERICAN_FLAG, CUBAN_FLAG} from '../../assets/icons/Flags';
 import {LanguageContext} from '../context/LanguageContext';
 import IconButton from '../ui/IconButton';
 import ProductCard from '../ui/ProductCard';
-import ProductSearch from '../ui/ProductSearch';
+import {FAKE_ITEMS} from '../utils/fakeData';
 
 const Home: React.FC = () => {
   const {language, changeLanguage} = useContext(LanguageContext);
@@ -29,7 +29,11 @@ const Home: React.FC = () => {
         </View>
       </View>
       <View style={styles.productCard}>
-        <ProductCard name={'text'} title={'image'} />
+        {FAKE_ITEMS.map((item, index) => (
+          <React.Fragment key={index}>
+            <ProductCard {...item} />
+          </React.Fragment>
+        ))}
       </View>
     </>
   );
@@ -58,6 +62,7 @@ const styles = StyleSheet.create({
   productCard: {
     justifyContent: 'center',
     alignItems: 'center',
+    height: '50%',
   },
 });
 

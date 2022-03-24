@@ -7,15 +7,8 @@ import Favorites from '../screens/Favorites';
 import Profile from '../screens/Profile';
 import Store from '../screens/Store';
 import {SvgXml} from 'react-native-svg';
-import {
-  HOME_ICON,
-  MONITOR_ICON,
-  NAV_HEART_ICON,
-  PROFILE_ICON,
-  SEARCH_ICON,
-  SHOPPING_CART_ICON,
-} from '../../assets/icons/Navigation';
 import {LanguageContext} from '../context/LanguageContext';
+import { HEART_ICON, HOME_ICON, PROFILE_ICON, SHOPPING_CART_ICON, SEARCH_ICON, MONITOR_ICON } from '../../assets/icons/General';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +30,7 @@ const Nav: React.FC = () => {
         options={{
           title: isSpanish ? 'Busqueda' : 'Discover',
           tabBarIcon: () => (
-            <SvgXml xml={SEARCH_ICON} width="70%" height="70%" />
+            <SvgXml xml={SEARCH_ICON} width="85%" height="85%" />
           ),
         }}
         component={Discover}
@@ -47,7 +40,7 @@ const Nav: React.FC = () => {
         options={{
           title: isSpanish ? 'Favoritos' : 'Favorites',
           tabBarIcon: () => (
-            <SvgXml xml={NAV_HEART_ICON} width="70%" height="70%" />
+            <SvgXml xml={HEART_ICON} width="85%" height="85%" />
           ),
         }}
         component={Favorites}
@@ -67,7 +60,7 @@ const Nav: React.FC = () => {
         options={{
           title: isSpanish ? 'Pérfil' : 'Profile',
           tabBarIcon: () => (
-            <SvgXml xml={PROFILE_ICON} width="75%" height="75%" />
+            <SvgXml xml={PROFILE_ICON} width="85%" height="85%" />
           ),
         }}
         component={Profile}
@@ -77,7 +70,7 @@ const Nav: React.FC = () => {
         options={{
           title: isSpanish ? 'Tienda' : 'Store',
           tabBarIcon: () => (
-            <SvgXml xml={MONITOR_ICON} width="75%" height="75%" />
+            <SvgXml xml={MONITOR_ICON} width="70%" height="70%" />
           ),
         }}
         component={Store}

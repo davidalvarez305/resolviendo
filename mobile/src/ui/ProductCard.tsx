@@ -1,35 +1,48 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
 import {SvgXml} from 'react-native-svg';
-import {PRODUCT_CARD_STAR} from '../../assets/icons/Navigation';
+import { FILLED_STAR_ICON } from '../../assets/icons/General';
+import {FONTS} from '../theme';
 interface ProductCardProps {
-  name: string;
-  title: string;
+  imageSource: string;
+  productName: string;
+  productPrice: string;
+  productRating: number;
+  city: string;
+  province: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({name, title}) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  imageSource,
+  productName,
+  productPrice,
+  productRating,
+  city,
+  province,
+}) => {
   return (
     <TouchableOpacity style={styles.container}>
       <View style={styles.image}>
         <Image
-          resizeMode="contain"
+          style={{width: 100, height: 100}}
           source={{
-            uri: 'https://cdn.southfloridaathleticclub.com/media/single/rawlings-heart-of-the-hide-infield-glove/rawlings_infield_baseball_glove_horizontal.webp',
+            uri: imageSource,
           }}
         />
       </View>
       <View style={styles.textArea}>
         <View>
-          <Text style={styles.productDetailsText['header']}>
-            {'3070 RTX GPU'}
-          </Text>
-          <Text style={styles.productDetailsText}>{'$45 USD'}</Text>
+          <Text style={styles.productDetailsHeader}>{productName}</Text>
+          <Text style={styles.productDetailsText}>{productPrice}</Text>
           <View style={styles.productDetails}>
-            <SvgXml xml={PRODUCT_CARD_STAR} height="75%" width="10%" />
-            <Text style={styles.productDetailsText}>{'5 Rating'}</Text>
+            <SvgXml xml={FILLED_STAR_ICON} height="75%" width="10%" />
+            <Text
+              style={
+                styles.productDetailsText
+              }>{`${productRating} Rating`}</Text>
           </View>
           <Text style={styles.productDetailsText}>
-            {'Guanabacoa, La Habana'}
+            {`${city}, ${province}`}
           </Text>
         </View>
       </View>
@@ -45,7 +58,7 @@ const styles = StyleSheet.create({
     height: '50%',
     borderRadius: 50,
     borderWidth: 1,
-    margin: 2
+    margin: 2,
   },
   image: {
     flex: 1,
@@ -64,11 +77,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
+  productDetailsHeader: {
+    fontSize: FONTS.sizes.h1,
+    fontFamily: FONTS.family.primary,
+    fontWeight: FONTS.weight.bold,
+  },
   productDetailsText: {
-    header: {
-      fontSize: 25,
-      fontFamily: 'Roboto',
-    },
     fontSize: 20,
     fontFamily: 'Roboto',
   },
