@@ -12,6 +12,7 @@ export const COLORS = {
     black: '#343434',
     grey: '#999999',
     lightGrey: '#EBEBEB',
+    mediumGrey: '#DBD9D9',
     white: '#FFFFFF',
   },
 };
@@ -20,6 +21,7 @@ export const FONTS = {
   family: {
     primary: 'DM Sans',
     secondary: 'Playfair Display',
+    input: 'Poppins'
   },
   sizes: {
     h1: 28,

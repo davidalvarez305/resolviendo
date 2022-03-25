@@ -1,10 +1,4 @@
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-} from 'react-native';
+import {View, TouchableOpacity, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import React from 'react';
 import {COLORS, FONTS} from '../theme';
 
@@ -25,8 +19,9 @@ const Button: React.FC<Props> = ({
   size,
   rightIcon,
   disabled,
-  isLoading,
+  isLoading
 }) => {
+
   let height = {
     xl: 54,
     lg: 50,
@@ -47,21 +42,13 @@ const Button: React.FC<Props> = ({
       borderRadius: 30,
       width: 169,
       height: height[size],
-      backgroundColor:
-        disabled || isLoading ? COLORS.primary.grey : colorVariant[variant],
-      borderWidth:
-        variant === 'outlined' && !disabled && !isLoading ? 2 : undefined,
-      borderColor:
-        variant === 'outlined' && !disabled && !isLoading
-          ? COLORS.primary.black
-          : undefined,
+      backgroundColor: disabled || isLoading ? COLORS.primary.grey : colorVariant[variant],
+      borderWidth: variant === 'outlined' && !disabled && !isLoading ? 2 : undefined,
+      borderColor: variant === 'outlined' && !disabled && !isLoading ? COLORS.primary.black : undefined,
       flexDirection: 'row',
     },
     text: {
-      color:
-        variant === 'solid' || disabled === true
-          ? COLORS.textColor.white
-          : COLORS.primary.black,
+      color: variant === 'solid' || disabled === true ? COLORS.textColor.white : COLORS.primary.black,
       fontSize: FONTS.sizes.h4,
       fontFamily: FONTS.family.primary,
     },
@@ -71,9 +58,7 @@ const Button: React.FC<Props> = ({
       <TouchableOpacity style={styles.container} onPress={onPress}>
         <Text style={styles.text}>{!isLoading && text}</Text>
         {rightIcon && !disabled && !isLoading && rightIcon}
-        {isLoading && (
-          <ActivityIndicator size="large" color={COLORS.textColor.white} />
-        )}
+        {isLoading && <ActivityIndicator size="large" color={COLORS.textColor.white} />}
       </TouchableOpacity>
     </View>
   );
