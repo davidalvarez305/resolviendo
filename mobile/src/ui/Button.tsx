@@ -1,4 +1,10 @@
-import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
 import React from 'react';
 import {COLORS, FONTS} from '../theme';
 
@@ -8,6 +14,8 @@ interface Props {
   variant: 'solid' | 'outlined';
   size: 'xl' | 'lg' | 'md' | 'sm' | 'xs';
   rightIcon?: React.ReactElement;
+  disabled?: boolean;
+  isLoading?: boolean;
 }
 
 const Button: React.FC<Props> = ({
@@ -15,7 +23,9 @@ const Button: React.FC<Props> = ({
   text,
   variant,
   size,
-  rightIcon
+  rightIcon,
+  disabled,
+  isLoading,
 }) => {
   let height = {
     xl: 54,
@@ -24,6 +34,12 @@ const Button: React.FC<Props> = ({
     sm: 34,
     xs: 26,
   };
+
+  let colorVariant = {
+    solid: COLORS.primary.black,
+    outlined: COLORS.textColor.white,
+  };
+
   const styles = StyleSheet.create({
     container: {
       justifyContent: 'center',
@@ -32,14 +48,20 @@ const Button: React.FC<Props> = ({
       width: 169,
       height: height[size],
       backgroundColor:
-        variant === 'solid' ? COLORS.primary.black : COLORS.textColor.white,
-      borderWidth: variant === 'outlined' ? 2 : undefined,
-      borderColor: variant === 'outlined' ? COLORS.primary.black : undefined,
+        disabled || isLoading ? COLORS.primary.grey : colorVariant[variant],
+      borderWidth:
+        variant === 'outlined' && !disabled && !isLoading ? 2 : undefined,
+      borderColor:
+        variant === 'outlined' && !disabled && !isLoading
+          ? COLORS.primary.black
+          : undefined,
       flexDirection: 'row',
     },
     text: {
       color:
-        variant === 'solid' ? COLORS.textColor.white : COLORS.primary.black,
+        variant === 'solid' || disabled === true
+          ? COLORS.textColor.white
+          : COLORS.primary.black,
       fontSize: FONTS.sizes.h4,
       fontFamily: FONTS.family.primary,
     },
@@ -47,8 +69,11 @@ const Button: React.FC<Props> = ({
   return (
     <View>
       <TouchableOpacity style={styles.container} onPress={onPress}>
-        <Text style={styles.text}>{text}</Text>
-        {rightIcon ? rightIcon : undefined}
+        <Text style={styles.text}>{!isLoading && text}</Text>
+        {rightIcon && !disabled && !isLoading && rightIcon}
+        {isLoading && (
+          <ActivityIndicator size="large" color={COLORS.textColor.white} />
+        )}
       </TouchableOpacity>
     </View>
   );

@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import {AMERICAN_FLAG, CUBAN_FLAG} from '../../assets/icons/Flags';
-import { PLUS_ICON } from '../../assets/icons/General';
+import { BLACK_PLUS_ICON, WHITE_PLUS_ICON } from '../../assets/icons/General';
 import {LanguageContext} from '../context/LanguageContext';
 import IconButton from '../ui/IconButton';
 import ProductCard from '../ui/ProductCard';
@@ -30,9 +30,9 @@ const Home: React.FC = () => {
       <Button
         onPress={() => console.log('pressed')}
         text={isSpanish ? 'Botón' : 'Button'}
-        variant="outlined"
+        variant="solid"
         size="xl"
-        rightIcon={<SvgXml xml={PLUS_ICON} height="55%" width={'20%'} />}
+        rightIcon={<SvgXml xml={WHITE_PLUS_ICON} height="55%" width={'20%'} />}
       />
     </>
   );
