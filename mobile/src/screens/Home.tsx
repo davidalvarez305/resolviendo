@@ -2,39 +2,38 @@ import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import {AMERICAN_FLAG, CUBAN_FLAG} from '../../assets/icons/Flags';
+import { PLUS_ICON } from '../../assets/icons/General';
 import {LanguageContext} from '../context/LanguageContext';
 import IconButton from '../ui/IconButton';
 import ProductCard from '../ui/ProductCard';
 import {FAKE_ITEMS} from '../utils/fakeData';
+import Button from '../ui/Button';
 
 const Home: React.FC = () => {
   const {language, changeLanguage} = useContext(LanguageContext);
+  const isSpanish = language === 'Spanish';
   return (
     <>
       <View style={styles.container}>
         <View style={styles.textView}>
           <Text style={styles.textStyles}>
-            {language === 'Spanish' ? 'Inicial' : 'Home'}
+            {isSpanish ? 'Inicial' : 'Home'}
           </Text>
         </View>
         <View style={styles.toggleLanguageButton}>
           <IconButton
             onPress={changeLanguage}
-            icon={
-              <SvgXml
-                xml={language === 'Spanish' ? AMERICAN_FLAG : CUBAN_FLAG}
-              />
-            }
+            icon={<SvgXml xml={isSpanish ? AMERICAN_FLAG : CUBAN_FLAG} />}
           />
         </View>
       </View>
-      <View style={styles.productCard}>
-        {FAKE_ITEMS.map((item, index) => (
-          <React.Fragment key={index}>
-            <ProductCard {...item} />
-          </React.Fragment>
-        ))}
-      </View>
+      <Button
+        onPress={() => console.log('pressed')}
+        text={isSpanish ? 'Botón' : 'Button'}
+        variant="outlined"
+        size="xl"
+        rightIcon={<SvgXml xml={PLUS_ICON} height="55%" width={'20%'} />}
+      />
     </>
   );
 };
