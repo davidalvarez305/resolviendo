@@ -2,7 +2,13 @@ import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import {AMERICAN_FLAG, CUBAN_FLAG} from '../../assets/icons/Flags';
-import { BLACK_PLUS_ICON, GREY_EYE_ICON, SEARCH_ICON, SECURITY_ICON, WHITE_PLUS_ICON } from '../../assets/icons/General';
+import {
+  BLACK_PLUS_ICON,
+  GREY_EYE_ICON,
+  SEARCH_ICON,
+  SECURITY_ICON,
+  WHITE_PLUS_ICON,
+} from '../../assets/icons/General';
 import {LanguageContext} from '../context/LanguageContext';
 import IconButton from '../ui/IconButton';
 import ProductCard from '../ui/ProductCard';
@@ -35,8 +41,8 @@ const Home: React.FC = () => {
         size="xl"
         rightIcon={<SvgXml xml={WHITE_PLUS_ICON} height="55%" width={'20%'} />}
       />
-      <View style={{ marginTop: 10 }}>
-      <InputField rightIconXml={SEARCH_ICON} />
+      <View style={{marginTop: 10}}>
+        <InputField phoneInput />
       </View>
     </>
   );
@@ -60,7 +66,9 @@ const styles = StyleSheet.create({
   },
   toggleLanguageButton: {
     justifyContent: 'flex-end',
-    width: '50%',
+    width: '10%',
+    borderRadius: 100,
+    overflow: 'hidden',
   },
   productCard: {
     justifyContent: 'center',
