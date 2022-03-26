@@ -17,6 +17,7 @@ import Button from '../ui/Button';
 import InputField from '../ui/InputField';
 import Checkbox from '../ui/Checkbox';
 import RadioButton from '../ui/RadioButton';
+import Switch from '../ui/Switch';
 
 const Home: React.FC = () => {
   const {language, changeLanguage} = useContext(LanguageContext);
@@ -52,6 +53,9 @@ const Home: React.FC = () => {
       </View>
       <View style={{ margin: 10 }}>
         <RadioButton isChecked={checked} setChecked={setChecked} />
+      </View>
+      <View style={{ margin: 10 }}>
+        <Switch isDisabled isChecked={checked} setChecked={setChecked} />
       </View>
     </>
   );

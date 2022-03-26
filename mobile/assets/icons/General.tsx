@@ -136,3 +136,27 @@ export const FILLED_RADIO_ICON = `<svg width="20" height="20" viewBox="0 0 20 20
 export const DISABLED_RADIO_ICON = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="10" cy="10" r="9.25" fill="#DBD9D9" stroke="#92929D" stroke-width="1.5"/>
 </svg>`;
+
+export const SWITCH_PILL_ICON = `<svg width="48" height="24" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="48" height="24" rx="12" fill="#E7EAFA"/>
+</svg>`;
+
+export const SWITCH_HANDLE_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="12" fill="#CA8385"/>
+</svg>`;
+
+export const SWITCH_GREY_PILL_ICON = `<svg width="48" height="24" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="48" height="24" rx="12" fill="#DBD9D9"/>
+</svg>`;
+
+export const SWITCH_GREY_HANDLE_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="12" fill="#92929D"/>
+</svg>`;
+
+export const DISABLED_HANDLE_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="12" fill="#EAEAEA"/>
+</svg>`;
+
+export const DISABLED_PILL_ICON = `<svg width="48" height="24" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="48" height="24" rx="12" fill="#DBD9D9"/>
+</svg>`;
