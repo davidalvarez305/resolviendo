@@ -106,3 +106,33 @@ export const GREY_EYE_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fi
 </svg>`;
 
 export const HIDE_EYE_ICON = `<svg fill="#92929D" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path d="M12.213 8.022l3.765 3.765C15.869 9.754 14.246 8.131 12.213 8.022zM17.469 16.105C16.078 17.167 14.27 18 12 18c-5.396 0-8.167-4.589-8.89-5.997.53-1.015 2.179-3.744 5.112-5.145L6.729 5.366c-3.824 2.126-5.552 6.015-5.648 6.24L.912 12l.169.394C1.214 12.705 4.428 20 12 20c2.934 0 5.206-1.098 6.906-2.458L17.469 16.105z"/><path d="M22.919 11.606C22.786 11.295 19.572 4 12 4c-1.211 0-2.299.201-3.292.516l1.646 1.646C10.875 6.063 11.419 6 12 6c5.396 0 8.167 4.589 8.89 5.997-.294.563-.937 1.655-1.946 2.755l1.426 1.426c1.68-1.818 2.484-3.633 2.549-3.784L23.088 12 22.919 11.606zM8 12c0 2.206 1.794 4 4 4 1.453 0 2.715-.786 3.415-1.948l-1.502-1.502C13.673 13.384 12.911 14 12 14c-1.103 0-2-.897-2-2 0-.911.616-1.673 1.45-1.913L9.948 8.585C8.786 9.285 8 10.547 8 12z"/><path d="M11 -0.021H13V24.021H11z" transform="rotate(-45.001 12 12)"/></svg>`;
+
+export const UNFILLED_CHECKBOX = `
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.75" y="0.75" width="22.5" height="22.5" rx="5.25" stroke="#92929D" stroke-width="1.5"/>
+</svg>`;
+
+export const FILLED_CHECKBOX = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.5" y="0.5" width="23" height="23" rx="5.5" fill="#CA8385" stroke="#CA8385"/>
+</svg>`;
+
+export const CHECKMARK_ICON = `<svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.6666 1L5.49998 10.1667L1.33331 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+export const DISABLED_CHECKBOX = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.75" y="0.75" width="22.5" height="22.5" rx="5.25" fill="#DBD9D9" stroke="#92929D" stroke-width="1.5"/>
+</svg>`;
+
+export const UNFILLED_RADIO_ICON = `
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="10" cy="10" r="9.25" stroke="#92929D" stroke-width="1.5"/>
+</svg>`;
+
+export const FILLED_RADIO_ICON = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="10" cy="10" r="9.25" fill="#CA8385" stroke="#CA8385" stroke-width="1.5"/>
+</svg>`;
+
+export const DISABLED_RADIO_ICON = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="10" cy="10" r="9.25" fill="#DBD9D9" stroke="#92929D" stroke-width="1.5"/>
+</svg>`;

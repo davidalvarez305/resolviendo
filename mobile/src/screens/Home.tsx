@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import {AMERICAN_FLAG, CUBAN_FLAG} from '../../assets/icons/Flags';
@@ -15,9 +15,12 @@ import ProductCard from '../ui/ProductCard';
 import {FAKE_ITEMS} from '../utils/fakeData';
 import Button from '../ui/Button';
 import InputField from '../ui/InputField';
+import Checkbox from '../ui/Checkbox';
+import RadioButton from '../ui/RadioButton';
 
 const Home: React.FC = () => {
   const {language, changeLanguage} = useContext(LanguageContext);
+  const [checked, setChecked] = useState(false);
   const isSpanish = language === 'Spanish';
   return (
     <>
@@ -42,7 +45,13 @@ const Home: React.FC = () => {
         rightIcon={<SvgXml xml={WHITE_PLUS_ICON} height="55%" width={'20%'} />}
       />
       <View style={{marginTop: 10}}>
-        <InputField phoneInput />
+        <InputField phoneInput keywordType="phone-pad" />
+      </View>
+      <View style={{ margin: 10 }}>
+        <Checkbox isDisabled isChecked={checked} setChecked={setChecked} />
+      </View>
+      <View style={{ margin: 10 }}>
+        <RadioButton isChecked={checked} setChecked={setChecked} />
       </View>
     </>
   );
