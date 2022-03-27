@@ -12,7 +12,8 @@ import Button from '../ui/Button';
 const ResetPassword = () => {
   const {language, changeLanguage} = useContext(LanguageContext);
   const isSpanish = language === 'Spanish';
-  const [email, setEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   return (
     <>
       <View style={styles.toggleLanguageButton}>
@@ -29,18 +30,40 @@ const ResetPassword = () => {
         </View>
         <View style={styles.inputContainer}>
           <View style={styles.inputViewStyles}>
-            <Label label={isSpanish ? 'Correo Electrónico' : 'Email'} />
+            <Label label={isSpanish ? 'Nueva Contraseña' : 'New Password'} />
           </View>
           <View style={{width: '100%'}}>
             <InputField
               placeholder={
                 isSpanish
-                  ? 'Ingrese Su Correo Electrónico'
-                  : 'Enter Your Email'
+                  ? 'Ingrese Su Nueva Contraseña'
+                  : 'Enter Your New Password'
               }
-              keywordType="default"
-              value={email}
-              onChange={input => setEmail(input)}
+              keywordType="visible-password"
+              password
+              value={newPassword}
+              onChange={input => setNewPassword(input)}
+              fontFamily={FONTS.family.primary}
+              fontSize={FONTS.sizes.h4}
+              borderWidth={1}
+              width={360}
+              letterSpacing={-0.5}
+            />
+          </View>
+        </View>
+        <View style={styles.inputContainer}>
+          <View style={styles.inputViewStyles}>
+            <Label label={isSpanish ? 'Confirmación' : 'Confirm Password'} />
+          </View>
+          <View style={{width: '100%'}}>
+            <InputField
+              placeholder={
+                isSpanish ? 'Confirme Su Contraseña' : 'Confirm Your Password'
+              }
+              keywordType="visible-password"
+              password
+              value={confirmPassword}
+              onChange={input => setConfirmPassword(input)}
               fontFamily={FONTS.family.primary}
               fontSize={FONTS.sizes.h4}
               borderWidth={1}
@@ -52,7 +75,7 @@ const ResetPassword = () => {
         <View style={styles.buttonContainer}>
           <Button
             variant="solid"
-            text={isSpanish ? 'Siguiente' : 'Next'}
+            text={isSpanish ? 'Resetear' : 'Reset'}
             onPress={() => console.log('pressed')}
             size="lg"
             width={340}
@@ -62,7 +85,7 @@ const ResetPassword = () => {
       </View>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   welcomeText: {

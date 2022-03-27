@@ -1,9 +1,9 @@
 import React from 'react';
-import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 
 const Home: React.FC = () => {
   return (
-    <ForgotPassword />
+    <ResetPassword />
   );
 };
 
