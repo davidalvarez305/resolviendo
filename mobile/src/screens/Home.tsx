@@ -1,9 +1,9 @@
 import React from 'react';
-import Register from './Register';
+import ForgotPassword from './ForgotPassword';
 
 const Home: React.FC = () => {
   return (
-    <Register />
+    <ForgotPassword />
   );
 };
 
