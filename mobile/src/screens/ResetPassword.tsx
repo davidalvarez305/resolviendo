@@ -25,7 +25,7 @@ const ResetPassword = () => {
       <View>
         <View style={{alignItems: 'center'}}>
           <Text style={styles.welcomeText}>
-            {isSpanish ? 'Olvidé Mi Contraseña' : 'Forgot Password'}
+            {isSpanish ? 'Crear Nueva Contraseña' : 'Create New Password'}
           </Text>
         </View>
         <View style={styles.inputContainer}>
@@ -89,9 +89,8 @@ const ResetPassword = () => {
 
 const styles = StyleSheet.create({
   welcomeText: {
-    fontFamily: FONTS.family.secondary,
-    fontWeight: '600',
-    fontSize: FONTS.sizes.h1,
+    fontFamily: FONTS.family.title,
+    fontSize: FONTS.sizes.title,
     color: COLORS.textColor.black,
   },
   toggleLanguageButton: {

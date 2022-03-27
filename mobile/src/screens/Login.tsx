@@ -116,9 +116,8 @@ const Login = () => {
 
 const styles = StyleSheet.create({
   welcomeText: {
-    fontFamily: FONTS.family.secondary,
-    fontWeight: '600',
-    fontSize: FONTS.sizes.h1,
+    fontFamily: FONTS.family.title,
+    fontSize: FONTS.sizes.title,
     color: COLORS.textColor.black,
   },
   toggleLanguageButton: {
