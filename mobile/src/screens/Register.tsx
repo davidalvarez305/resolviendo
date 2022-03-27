@@ -8,14 +8,13 @@ import {SvgXml} from 'react-native-svg';
 import {AMERICAN_FLAG, CUBAN_FLAG} from '../../assets/icons/Flags';
 import IconButton from '../ui/IconButton';
 import Button from '../ui/Button';
-import Checkbox from '../ui/Checkbox';
 
-const Login = () => {
+const Register = () => {
   const {language, changeLanguage} = useContext(LanguageContext);
   const isSpanish = language === 'Spanish';
+  const [fullName, setFullName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
   return (
     <>
       <View style={styles.toggleLanguageButton}>
@@ -27,8 +26,30 @@ const Login = () => {
       <View>
         <View style={{alignItems: 'center'}}>
           <Text style={styles.welcomeText}>
-            {isSpanish ? 'Hola, Bienvenido! 👋' : 'Hi, Welcome Back! 👋'}
+            {isSpanish ? 'Crear Una Cuenta' : 'Create Account'}
           </Text>
+        </View>
+        <View style={styles.inputContainer}>
+          <View style={styles.inputViewStyles}>
+            <Label label={isSpanish ? 'Nombre' : 'Full Name'} />
+          </View>
+          <View style={{width: '100%'}}>
+            <InputField
+              placeholder={
+                isSpanish
+                  ? 'Ingrese Su Nombre Completo'
+                  : 'Enter Your Full Name'
+              }
+              keywordType="default"
+              value={fullName}
+              onChange={input => setFullName(input)}
+              fontFamily={FONTS.family.primary}
+              fontSize={FONTS.sizes.h4}
+              borderWidth={1}
+              width={360}
+              letterSpacing={-0.5}
+            />
+          </View>
         </View>
         <View style={styles.inputContainer}>
           <View style={styles.inputViewStyles}>
@@ -73,40 +94,22 @@ const Login = () => {
             />
           </View>
         </View>
-        <View style={styles.loginOptions}>
-          <View style={{flexDirection: 'row', width: '50%'}}>
-            <View style={styles.checkboxButton}>
-              <Checkbox isChecked={rememberMe} setChecked={setRememberMe} variant="outline" />
-            </View>
-            <View>
-              <Text style={styles.rememberMeText}>
-                {isSpanish ? 'Recuérdame' : 'Remember Me'}
-              </Text>
-            </View>
-          </View>
-          <View
-            style={{width: '50%', alignItems: 'flex-end', paddingRight: 20}}>
-            <Text style={styles.forgotPasswordText}>
-              {isSpanish ? 'Olvidé mi contraseña' : 'Forgot Password'}
-            </Text>
-          </View>
-        </View>
         <View style={styles.buttonContainer}>
           <Button
             variant="solid"
-            text={isSpanish ? 'Ingresar' : 'Login'}
+            text={isSpanish ? 'Registrarse' : 'Create an account'}
             onPress={() => console.log('pressed')}
             size="lg"
             width={340}
             buttonLetterSpacing={-0.5}
           />
         </View>
-        <View style={{flexDirection: 'row', height: 20, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{flexDirection: 'row', height: 20, justifyContent: 'center', alignItems: 'center', marginTop: 100}}>
           <Text style={styles.noAccountText}>
-            {isSpanish ? 'No estas registrado?' : "Don't have an account?"}
+            {isSpanish ? 'Usted acepta al registrarse nuestros' : "When you sign up, you agree to our"}
           </Text>
           <Text style={styles.signUpText}>
-            {isSpanish ? ' Crea una cuenta' : ' Sign up'}
+            {isSpanish ? ' Términos y Condiciones.' : ' Terms & Conditions.'}
           </Text>
         </View>
       </View>
@@ -143,26 +146,6 @@ const styles = StyleSheet.create({
     width: '100%',
     marginLeft: 20,
   },
-  loginOptions: {
-    marginHorizontal: 5,
-    marginTop: 15,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  forgotPasswordText: {
-    color: COLORS.textColor.black,
-    textDecorationLine: 'underline',
-  },
-  rememberMeText: {
-    fontFamily: FONTS.family.primary,
-    color: COLORS.textColor.black,
-    fontWeight: '600',
-    marginLeft: 15,
-    fontSize: FONTS.sizes.h5,
-    letterSpacing: -0.5,
-    textAlignVertical: 'top',
-    lineHeight: 18,
-  },
   checkboxButton: {
     width: '15%',
     height: 30,
@@ -183,4 +166,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Register;
