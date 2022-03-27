@@ -19,8 +19,8 @@ export const COLORS = {
 
 export const FONTS = {
   family: {
-    primary: 'DM Sans',
-    secondary: 'Playfair Display',
+    primary: 'DMSans',
+    secondary: 'PlayfairDisplay',
     input: 'Poppins'
   },
   sizes: {

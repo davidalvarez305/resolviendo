@@ -10,6 +10,8 @@ interface Props {
   rightIcon?: React.ReactElement;
   disabled?: boolean;
   isLoading?: boolean;
+  width?: number;
+  buttonLetterSpacing?: number;
 }
 
 const Button: React.FC<Props> = ({
@@ -19,7 +21,9 @@ const Button: React.FC<Props> = ({
   size,
   rightIcon,
   disabled,
-  isLoading
+  isLoading,
+  width,
+  buttonLetterSpacing
 }) => {
 
   let height = {
@@ -40,7 +44,7 @@ const Button: React.FC<Props> = ({
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 30,
-      width: 169,
+      width: width ? width : 169,
       height: height[size],
       backgroundColor: disabled || isLoading ? COLORS.primary.grey : colorVariant[variant],
       borderWidth: variant === 'outlined' && !disabled && !isLoading ? 2 : undefined,
@@ -51,6 +55,7 @@ const Button: React.FC<Props> = ({
       color: variant === 'solid' || disabled === true ? COLORS.textColor.white : COLORS.primary.black,
       fontSize: FONTS.sizes.h4,
       fontFamily: FONTS.family.primary,
+      letterSpacing: buttonLetterSpacing ? buttonLetterSpacing : undefined
     },
   });
   return (

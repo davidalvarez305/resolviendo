@@ -17,7 +17,7 @@ import {AMERICAN_FLAG} from '../../assets/icons/Flags';
 
 interface Props {
   value: string;
-  onChange: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  onChange: (text: string) => void;
   placeholder?: string;
   disabled?: boolean;
   password?: boolean;
@@ -26,6 +26,12 @@ interface Props {
   rightIconXml?: string;
   leftIconXml?: string;
   phoneInput?: boolean;
+  fontFamily?: string;
+  fontSize?: number;
+  borderWidth?: number;
+  width?: number;
+  height?: number;
+  letterSpacing?: number;
 }
 
 const InputField: React.FC<Props> = ({
@@ -39,8 +45,15 @@ const InputField: React.FC<Props> = ({
   textContentType,
   leftIconXml,
   phoneInput,
+  fontFamily,
+  fontSize,
+  borderWidth,
+  width,
+  height,
+  letterSpacing
 }) => {
   const [hidePassword, setHidePassword] = useState(password);
+  const paddingLeft = width ? width * .75 : 195
 
   const styles = StyleSheet.create({
     container: {
@@ -49,21 +62,21 @@ const InputField: React.FC<Props> = ({
     input: {
       borderRadius: 15,
       borderColor: COLORS.textColor.mediumGrey,
-      borderWidth: 2,
-      width: 276,
-      height: 60,
+      borderWidth: borderWidth ? borderWidth : 2,
+      width: width ? width : 276,
+      height: height ? height : 60,
       marginHorizontal: 10,
-      fontSize: FONTS.sizes.h3,
-      fontFamily: FONTS.family.input,
+      fontSize: fontSize ? fontSize : FONTS.sizes.h5,
+      fontFamily: fontFamily ? fontFamily : FONTS.family.input,
       lineHeight: 24,
-      letterSpacing: 0.12,
+      letterSpacing: letterSpacing ? letterSpacing : 0.12,
       paddingBottom: 12,
       paddingLeft: leftIconXml ? 54 : phoneInput ? 84 : 16,
       paddingRight: rightIconXml ? 54 : 12,
       paddingTop: 16,
       textAlign: 'left',
-      textAlignVertical: 'top',
       margin: 10,
+      overflow: 'scroll'
     },
     disabledInput: {
       backgroundColor: COLORS.textColor.grey,
@@ -94,7 +107,7 @@ const InputField: React.FC<Props> = ({
       paddingTop: 16,
       margin: 10,
       justifyContent: 'center',
-      left: rightIconXml ? 195 : undefined,
+      left: rightIconXml || password ? paddingLeft : undefined,
       right: leftIconXml ? 25 : undefined,
     },
     phoneInput: {
@@ -131,7 +144,7 @@ const InputField: React.FC<Props> = ({
       <View style={styles.container}>
         <TextInput
           value={value}
-          onChange={onChange}
+          onChangeText={onChange}
           placeholder={placeholder ? placeholder : 'Placeholder'}
           style={disabled ? styles.disabledInput : styles.input}
           editable={!disabled}
@@ -144,7 +157,7 @@ const InputField: React.FC<Props> = ({
       {password && (
         <TouchableOpacity
           style={styles.icon}
-          onPress={() => setHidePassword(!hidePassword)}>
+          onPress={() => setHidePassword(prev => !prev)}>
           {hidePassword && (
             <SvgXml xml={HIDE_EYE_ICON} height={'100%'} width={'100%'} />
           )}
