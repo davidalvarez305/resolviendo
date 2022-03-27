@@ -76,7 +76,7 @@ export default function Login() {
         <View style={styles.loginOptions}>
           <View style={{flexDirection: 'row', width: '50%'}}>
             <View style={styles.checkboxButton}>
-              <Checkbox isChecked={rememberMe} setChecked={setRememberMe} />
+              <Checkbox isChecked={rememberMe} setChecked={setRememberMe} variant="outline" />
             </View>
             <View>
               <Text style={styles.rememberMeText}>

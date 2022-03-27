@@ -116,8 +116,12 @@ export const FILLED_CHECKBOX = `<svg width="24" height="24" viewBox="0 0 24 24" 
 <rect x="0.5" y="0.5" width="23" height="23" rx="5.5" fill="#CA8385" stroke="#CA8385"/>
 </svg>`;
 
-export const CHECKMARK_ICON = `<svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const UNFILLED_CHECKMARK = `<svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M14.6666 1L5.49998 10.1667L1.33331 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+export const FILLED_CHECKMARK = `<svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.6666 1L5.49998 10.1667L1.33331 6" stroke="#999999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
 export const DISABLED_CHECKBOX = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

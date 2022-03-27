@@ -2,19 +2,21 @@ import {TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {SvgXml} from 'react-native-svg';
 import {
-  CHECKMARK_ICON,
   DISABLED_CHECKBOX,
   FILLED_CHECKBOX,
+  FILLED_CHECKMARK,
   UNFILLED_CHECKBOX,
+  UNFILLED_CHECKMARK,
 } from '../../assets/icons/General';
 
 interface Props {
   isChecked: boolean;
   setChecked: React.Dispatch<React.SetStateAction<boolean>>;
   isDisabled?: boolean;
+  variant?: "solid" | "outline"
 }
 
-const Checkbox: React.FC<Props> = ({isChecked, setChecked, isDisabled}) => {
+const Checkbox: React.FC<Props> = ({isChecked, setChecked, isDisabled, variant}) => {
   return (
     <>
       {isDisabled ? (
@@ -26,7 +28,7 @@ const Checkbox: React.FC<Props> = ({isChecked, setChecked, isDisabled}) => {
           ) : (
             <View style={{position: 'relative'}}>
               <View style={{position: 'absolute'}}>
-                <SvgXml xml={FILLED_CHECKBOX} />
+                <SvgXml xml={variant === "outline" ? UNFILLED_CHECKBOX : FILLED_CHECKBOX} />
               </View>
               <View
                 style={{
@@ -34,7 +36,7 @@ const Checkbox: React.FC<Props> = ({isChecked, setChecked, isDisabled}) => {
                   top: 5,
                   left: 4,
                 }}>
-                <SvgXml xml={CHECKMARK_ICON} />
+                <SvgXml xml={variant === "outline" ? FILLED_CHECKMARK : UNFILLED_CHECKMARK} />
               </View>
             </View>
           )}
