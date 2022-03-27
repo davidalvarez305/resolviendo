@@ -1,9 +1,9 @@
 import React from 'react';
-import ResetPassword from './ResetPassword';
+import OneTimeCode from './OneTimeCode';
 
 const Home: React.FC = () => {
   return (
-    <ResetPassword />
+    <OneTimeCode />
   );
 };
 

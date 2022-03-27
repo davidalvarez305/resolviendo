@@ -21,9 +21,11 @@ export const FONTS = {
   family: {
     primary: 'DMSans',
     secondary: 'PlayfairDisplay',
-    input: 'Poppins'
+    input: 'Poppins',
+    title: 'PlayfairDisplay-Medium'
   },
   sizes: {
+    title: 32,
     h1: 28,
     h2: 24,
     h3: 20,
