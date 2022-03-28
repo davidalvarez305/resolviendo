@@ -56,6 +56,8 @@ const AddressList: React.FC<Props> = ({setShowAddress}) => {
                   buttonLetterSpacing={-0.5}
                   fontFamily={FONTS.family.primary}
                   fontSize={13}
+                  buttonBackgroundColor={'transparent'}
+                  outlinedBorderWidth={1}
                 />
               </View>
             </View>
@@ -100,6 +102,7 @@ const AddressList: React.FC<Props> = ({setShowAddress}) => {
             size="lg"
             width={120}
             buttonLetterSpacing={-0.5}
+            buttonBackgroundColor={'transparent'}
           />
         </View>
         <View style={styles.buttonContainer}>

@@ -1,11 +1,17 @@
-import {View, TouchableOpacity, Text, StyleSheet, ActivityIndicator} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
 import React from 'react';
 import {COLORS, FONTS} from '../theme';
 
 interface Props {
   onPress: () => void;
   text: string;
-  variant: 'solid' | 'outlined'
+  variant: 'solid' | 'outlined';
   size: 'xl' | 'lg' | 'md' | 'sm' | 'xs';
   rightIcon?: React.ReactElement;
   disabled?: boolean;
@@ -14,6 +20,8 @@ interface Props {
   buttonLetterSpacing?: number;
   fontFamily?: string;
   fontSize?: number;
+  buttonBackgroundColor?: string;
+  outlinedBorderWidth?: number;
 }
 
 const Button: React.FC<Props> = ({
@@ -27,9 +35,10 @@ const Button: React.FC<Props> = ({
   width,
   buttonLetterSpacing,
   fontFamily,
-  fontSize
+  fontSize,
+  buttonBackgroundColor,
+  outlinedBorderWidth
 }) => {
-
   let height = {
     xl: 54,
     lg: 50,
@@ -40,7 +49,7 @@ const Button: React.FC<Props> = ({
 
   let colorVariant = {
     solid: COLORS.primary.black,
-    outlined: COLORS.textColor.white
+    outlined: buttonBackgroundColor ? buttonBackgroundColor : COLORS.textColor.white,
   };
 
   const styles = StyleSheet.create({
@@ -50,24 +59,56 @@ const Button: React.FC<Props> = ({
       borderRadius: 30,
       width: width ? width : 169,
       height: height[size],
-      backgroundColor: disabled || isLoading ? COLORS.primary.grey : colorVariant[variant],
-      borderWidth: variant === 'outlined' && !disabled && !isLoading ? 2 : undefined,
-      borderColor: variant === 'outlined' && !disabled && !isLoading ? COLORS.primary.black : undefined,
       flexDirection: 'row',
+      backgroundColor: colorVariant[variant]
     },
     text: {
-      color: variant === 'solid' || disabled === true ? COLORS.textColor.white : COLORS.primary.black,
-      fontSize: fontSize? fontSize : FONTS.sizes.h4,
+      color:
+        variant === 'solid' || disabled === true
+          ? COLORS.textColor.white
+          : COLORS.primary.black,
+      fontSize: fontSize ? fontSize : FONTS.sizes.h4,
       fontFamily: fontFamily ? fontFamily : FONTS.family.primary,
-      letterSpacing: buttonLetterSpacing ? buttonLetterSpacing : undefined
+      letterSpacing: buttonLetterSpacing ? buttonLetterSpacing : undefined,
     },
   });
+
+  let disabledContainerStyles = {
+    ...styles.container,
+    backgroundColor: COLORS.primary.grey,
+  };
+
+  let outlinedContainerStyles = {
+    ...styles.container,
+    borderWidth: outlinedBorderWidth ? outlinedBorderWidth : 2,
+    borderColor: COLORS.primary.black,
+    backgroundColor: colorVariant[variant],
+  };
+
+  let renderedStyles = {};
+
+  switch (true) {
+    case isLoading || disabled:
+      renderedStyles = disabledContainerStyles;
+    case variant === 'outlined':
+      renderedStyles = outlinedContainerStyles;
+      break;
+    case variant === 'solid':
+      renderedStyles = styles.container;
+      break;
+    default:
+      renderedStyles = styles.container;
+      break;
+  }
+
   return (
     <View>
-      <TouchableOpacity style={styles.container} onPress={onPress}>
+      <TouchableOpacity style={renderedStyles} onPress={onPress}>
         <Text style={styles.text}>{!isLoading && text}</Text>
         {rightIcon && !disabled && !isLoading && rightIcon}
-        {isLoading && <ActivityIndicator size="large" color={COLORS.textColor.white} />}
+        {isLoading && (
+          <ActivityIndicator size="large" color={COLORS.textColor.white} />
+        )}
       </TouchableOpacity>
     </View>
   );

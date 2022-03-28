@@ -11,16 +11,15 @@ interface Props {
 }
 
 const SettingsLayout: React.FC<Props> = ({pageName, onPress, children}) => {
-
   return (
     <View style={styles.main}>
       <View style={styles.header}>
         <TouchableOpacity
-          style={{alignItems: 'flex-start', width: '35%'}}
+          style={{position: 'absolute', left: 0.5, top: '45%'}}
           onPress={() => onPress(prev => !prev)}>
           <SvgXml xml={BACK_ARROW_ICON} />
         </TouchableOpacity>
-        <View style={{alignItems: 'flex-start', width: '65%'}}>
+        <View style={{alignItems: 'center', width: '100%'}}>
           <Text style={styles.headerText}>{pageName}</Text>
         </View>
       </View>
@@ -41,11 +40,12 @@ const styles = StyleSheet.create({
     height: '20%',
     width: '100%',
     alignItems: 'center',
-    flexDirection: 'row',
+    justifyContent: 'center',
+    flexDirection: 'row'
   },
   headerText: {
     fontFamily: FONTS.family.title,
-    fontSize: FONTS.sizes.title,
+    fontSize: FONTS.sizes.h1,
     color: COLORS.primary.black,
   },
 });
