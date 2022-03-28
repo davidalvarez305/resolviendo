@@ -20,6 +20,7 @@ export const COLORS = {
 export const FONTS = {
   family: {
     primary: 'DMSans',
+    primaryMedium: 'DMSans-Medium',
     secondary: 'PlayfairDisplay',
     input: 'Poppins',
     title: 'PlayfairDisplay-Medium'

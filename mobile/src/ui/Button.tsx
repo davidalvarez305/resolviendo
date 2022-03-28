@@ -5,13 +5,15 @@ import {COLORS, FONTS} from '../theme';
 interface Props {
   onPress: () => void;
   text: string;
-  variant: 'solid' | 'outlined';
+  variant: 'solid' | 'outlined'
   size: 'xl' | 'lg' | 'md' | 'sm' | 'xs';
   rightIcon?: React.ReactElement;
   disabled?: boolean;
   isLoading?: boolean;
   width?: number;
   buttonLetterSpacing?: number;
+  fontFamily?: string;
+  fontSize?: number;
 }
 
 const Button: React.FC<Props> = ({
@@ -23,7 +25,9 @@ const Button: React.FC<Props> = ({
   disabled,
   isLoading,
   width,
-  buttonLetterSpacing
+  buttonLetterSpacing,
+  fontFamily,
+  fontSize
 }) => {
 
   let height = {
@@ -36,7 +40,7 @@ const Button: React.FC<Props> = ({
 
   let colorVariant = {
     solid: COLORS.primary.black,
-    outlined: COLORS.textColor.white,
+    outlined: COLORS.textColor.white
   };
 
   const styles = StyleSheet.create({
@@ -53,8 +57,8 @@ const Button: React.FC<Props> = ({
     },
     text: {
       color: variant === 'solid' || disabled === true ? COLORS.textColor.white : COLORS.primary.black,
-      fontSize: FONTS.sizes.h4,
-      fontFamily: FONTS.family.primary,
+      fontSize: fontSize? fontSize : FONTS.sizes.h4,
+      fontFamily: fontFamily ? fontFamily : FONTS.family.primary,
       letterSpacing: buttonLetterSpacing ? buttonLetterSpacing : undefined
     },
   });

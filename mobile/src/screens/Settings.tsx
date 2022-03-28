@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useContext} from 'react';
+import {View} from 'react-native';
+import React, {useContext, useState} from 'react';
 import {
   HELP_ICON,
   INFORMATION_ICON,
@@ -10,8 +10,8 @@ import {
 } from '../../assets/icons/General';
 import {LanguageContext} from '../context/LanguageContext';
 import ProfileSettingCard from '../ui/ProfileSettingCard';
-import {COLORS, FONTS} from '../theme';
 import SettingsLayout from '../layouts/SettingsLayout';
+import AddressList from './AddressList';
 
 interface Props {
   setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +20,12 @@ interface Props {
 const Settings: React.FC<Props> = ({setShowSettings}) => {
   const {language} = useContext(LanguageContext);
   const isSpanish = language === 'Spanish';
+  const [showAddress, setShowAddress] = useState(false);
+
+  if (showAddress) {
+    return <AddressList setShowAddress={setShowAddress} />;
+  }
+
   const options = [
     {
       iconXmlString: SHOPPING_CART_ICON,
@@ -55,7 +61,7 @@ const Settings: React.FC<Props> = ({setShowSettings}) => {
           <React.Fragment key={index}>
             <ProfileSettingCard
               {...opt}
-              onPress={() => console.log(opt.text)}
+              onPress={() => setShowAddress(prev => !prev)}
             />
           </React.Fragment>
         ))}
