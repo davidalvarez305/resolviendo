@@ -1,13 +1,27 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {COLORS, FONTS} from '../theme';
 import {LanguageContext} from '../context/LanguageContext';
-import {BELL_ICON, LOCK_ICON, PROFILE_ICON, SETTINGS_ICON} from '../../assets/icons/General';
+import {
+  BELL_ICON,
+  LOCK_ICON,
+  PROFILE_ICON,
+  SETTINGS_ICON,
+} from '../../assets/icons/General';
 import ProfileSettingCard from '../ui/ProfileSettingCard';
+import Settings from './Settings';
 
 const Profile = () => {
   const {language} = useContext(LanguageContext);
   const isSpanish = language === 'Spanish';
+  const [showSettings, setShowSettings] = useState(false);
+
+  if (showSettings) {
+    return (
+      <Settings setShowSettings={setShowSettings} />
+    )
+  }
+
   return (
     <View style={styles.main}>
       <View style={styles.header}>
@@ -41,10 +55,12 @@ const Profile = () => {
       </View>
       <View style={{marginTop: 30}}>
         <ProfileSettingCard
+          onPress={() => console.log('Your Profile')}
           text={isSpanish ? 'Su Perfil' : 'Your Profile'}
           iconXmlString={PROFILE_ICON}
         />
         <ProfileSettingCard
+          onPress={() => console.log('Change Password')}
           text={isSpanish ? 'Cambiar Contraseña' : 'Change Password'}
           iconXmlString={LOCK_ICON}
         />
@@ -55,10 +71,12 @@ const Profile = () => {
       </View>
       <View style={{marginTop: 30}}>
         <ProfileSettingCard
+          onPress={() => console.log('Notifications')}
           text={isSpanish ? 'Notificaciones' : 'Notifications'}
           iconXmlString={BELL_ICON}
         />
         <ProfileSettingCard
+          onPress={() => setShowSettings(prev => !prev)}
           text={isSpanish ? 'Configuraciones' : 'Settings'}
           iconXmlString={SETTINGS_ICON}
         />
@@ -85,7 +103,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontFamily: FONTS.family.title,
     fontSize: FONTS.sizes.title,
-    fontColor: COLORS.primary.black,
+    color: COLORS.primary.black,
   },
   profileImageContainer: {
     height: 100,

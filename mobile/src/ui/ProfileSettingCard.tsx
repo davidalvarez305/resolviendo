@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {SvgXml} from 'react-native-svg';
 import {COLORS, FONTS} from '../theme';
@@ -6,18 +6,19 @@ import {COLORS, FONTS} from '../theme';
 interface Props {
   text: string;
   iconXmlString: string;
+  onPress: () => void;
 }
 
-const ProfileSettingCard: React.FC<Props> = ({text, iconXmlString}) => {
+const ProfileSettingCard: React.FC<Props> = ({text, iconXmlString, onPress}) => {
   return (
-    <View style={styles.main}>
+    <TouchableOpacity style={styles.main} onPress={onPress}>
       <View>
         <SvgXml xml={iconXmlString} />
       </View>
       <View style={{marginHorizontal: 20}}>
         <Text style={styles.text}>{text}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
