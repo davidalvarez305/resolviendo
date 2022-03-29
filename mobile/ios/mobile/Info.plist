@@ -58,6 +58,8 @@
 		<string>Poppins.ttf</string>
 		<string>PlayfairDisplay-Medium.ttf</string>
 		<string>DMSans-Medium.ttf</string>
+		<string>DMSans-Bold.ttf</string>
+		<string>PlayfairDisplay-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

@@ -19,6 +19,8 @@
 		D4ECBCC79EEB4252B653A18A /* Poppins.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADF200F0EF544A70A05DF615 /* Poppins.ttf */; };
 		14EBEB389A4B4A71A1E2E886 /* PlayfairDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 123734DFA4B24D9A996B0A93 /* PlayfairDisplay-Medium.ttf */; };
 		F8AF98A0A9964F1F9435E67C /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF7B752852B24793A1268477 /* DMSans-Medium.ttf */; };
+		1B033674A8454C119B54F643 /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E110124CF894EA684024C6C /* DMSans-Bold.ttf */; };
+		3F49E03ED53A4B12BC41536B /* PlayfairDisplay-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9668A000A8A48C38B268DF9 /* PlayfairDisplay-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		ADF200F0EF544A70A05DF615 /* Poppins.ttf */ = {isa = PBXFileReference; name = "Poppins.ttf"; path = "../assets/fonts/Poppins.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		123734DFA4B24D9A996B0A93 /* PlayfairDisplay-Medium.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-Medium.ttf"; path = "../assets/fonts/PlayfairDisplay-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		AF7B752852B24793A1268477 /* DMSans-Medium.ttf */ = {isa = PBXFileReference; name = "DMSans-Medium.ttf"; path = "../assets/fonts/DMSans-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9E110124CF894EA684024C6C /* DMSans-Bold.ttf */ = {isa = PBXFileReference; name = "DMSans-Bold.ttf"; path = "../assets/fonts/DMSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E9668A000A8A48C38B268DF9 /* PlayfairDisplay-SemiBold.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-SemiBold.ttf"; path = "../assets/fonts/PlayfairDisplay-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,8 @@
 				ADF200F0EF544A70A05DF615 /* Poppins.ttf */,
 				123734DFA4B24D9A996B0A93 /* PlayfairDisplay-Medium.ttf */,
 				AF7B752852B24793A1268477 /* DMSans-Medium.ttf */,
+				9E110124CF894EA684024C6C /* DMSans-Bold.ttf */,
+				E9668A000A8A48C38B268DF9 /* PlayfairDisplay-SemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -274,6 +280,8 @@
 				D4ECBCC79EEB4252B653A18A /* Poppins.ttf in Resources */,
 				14EBEB389A4B4A71A1E2E886 /* PlayfairDisplay-Medium.ttf in Resources */,
 				F8AF98A0A9964F1F9435E67C /* DMSans-Medium.ttf in Resources */,
+				1B033674A8454C119B54F643 /* DMSans-Bold.ttf in Resources */,
+				3F49E03ED53A4B12BC41536B /* PlayfairDisplay-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
