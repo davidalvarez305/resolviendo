@@ -14,6 +14,7 @@ interface Props {
   variant: 'solid' | 'outlined';
   size: 'xl' | 'lg' | 'md' | 'sm' | 'xs';
   rightIcon?: React.ReactElement;
+  leftIcon?: React.ReactElement;
   disabled?: boolean;
   isLoading?: boolean;
   width?: number;
@@ -22,6 +23,9 @@ interface Props {
   fontSize?: number;
   buttonBackgroundColor?: string;
   outlinedBorderWidth?: number;
+  outlinedBorderColor?: string;
+  fontColor?: string;
+  fontWeight?: "800" | "500" | "400" | "normal" | "bold" | "100" | "200" | "300" | "600" | "700" | "900";
 }
 
 const Button: React.FC<Props> = ({
@@ -37,7 +41,11 @@ const Button: React.FC<Props> = ({
   fontFamily,
   fontSize,
   buttonBackgroundColor,
-  outlinedBorderWidth
+  outlinedBorderWidth,
+  outlinedBorderColor,
+  fontColor,
+  fontWeight,
+  leftIcon
 }) => {
   let height = {
     xl: 54,
@@ -49,7 +57,9 @@ const Button: React.FC<Props> = ({
 
   let colorVariant = {
     solid: COLORS.primary.black,
-    outlined: buttonBackgroundColor ? buttonBackgroundColor : COLORS.textColor.white,
+    outlined: buttonBackgroundColor
+      ? buttonBackgroundColor
+      : COLORS.textColor.white,
   };
 
   const styles = StyleSheet.create({
@@ -60,16 +70,19 @@ const Button: React.FC<Props> = ({
       width: width ? width : 169,
       height: height[size],
       flexDirection: 'row',
-      backgroundColor: colorVariant[variant]
+      backgroundColor: colorVariant[variant],
     },
     text: {
       color:
         variant === 'solid' || disabled === true
           ? COLORS.textColor.white
+          : fontColor
+          ? fontColor
           : COLORS.primary.black,
       fontSize: fontSize ? fontSize : FONTS.sizes.h4,
       fontFamily: fontFamily ? fontFamily : FONTS.family.primary,
       letterSpacing: buttonLetterSpacing ? buttonLetterSpacing : undefined,
+      fontWeight: fontWeight ? fontWeight: undefined,
     },
   });
 
@@ -81,7 +94,9 @@ const Button: React.FC<Props> = ({
   let outlinedContainerStyles = {
     ...styles.container,
     borderWidth: outlinedBorderWidth ? outlinedBorderWidth : 2,
-    borderColor: COLORS.primary.black,
+    borderColor: outlinedBorderColor
+      ? outlinedBorderColor
+      : COLORS.primary.black,
     backgroundColor: colorVariant[variant],
   };
 
@@ -104,6 +119,7 @@ const Button: React.FC<Props> = ({
   return (
     <View>
       <TouchableOpacity style={renderedStyles} onPress={onPress}>
+        {leftIcon && !disabled && !isLoading && leftIcon}
         <Text style={styles.text}>{!isLoading && text}</Text>
         {rightIcon && !disabled && !isLoading && rightIcon}
         {isLoading && (
