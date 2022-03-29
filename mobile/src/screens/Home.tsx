@@ -1,9 +1,9 @@
 import React from 'react';
-import ResetPassword from './ResetPassword';
+import ProductCard from '../ui/ProductCard';
 
 const Home: React.FC = () => {
   return (
-    <ResetPassword />
+    <ProductCard />
   );
 };
 

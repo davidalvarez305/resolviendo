@@ -5,6 +5,7 @@ import {LanguageContext} from '../context/LanguageContext';
 import {COLORS, FONTS} from '../theme';
 import Checkbox from '../ui/Checkbox';
 import Button from '../ui/Button';
+import CreateShippingAddress from './CreateShippingAddress';
 
 interface Props {
   setShowAddress: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,6 +13,7 @@ interface Props {
 
 const AddressList: React.FC<Props> = ({setShowAddress}) => {
   const [defaultAddress, setDefaultAddress] = useState(false);
+  const [createNewAddress, setCreateNewAddress] = useState(false);
   const {language} = useContext(LanguageContext);
   const isSpanish = language === 'Spanish';
   const addressList = [
@@ -30,6 +32,13 @@ const AddressList: React.FC<Props> = ({setShowAddress}) => {
       country: 'Cuba',
     },
   ];
+
+  if (createNewAddress) {
+      return (
+          <CreateShippingAddress setCreateNewAddress={setCreateNewAddress} />
+      )
+  }
+
   return (
     <SettingsLayout
       onPress={setShowAddress}
@@ -98,7 +107,7 @@ const AddressList: React.FC<Props> = ({setShowAddress}) => {
           <Button
             variant="outlined"
             text={isSpanish ? 'Agregar Nuevo' : 'Add New'}
-            onPress={() => console.log('pressed')}
+            onPress={() => setCreateNewAddress(true)}
             size="lg"
             width={120}
             buttonLetterSpacing={-0.5}
