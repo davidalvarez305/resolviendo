@@ -1,21 +1,19 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {COLORS, FONTS} from '../theme';
 import {SvgXml} from 'react-native-svg';
-import {BACK_ARROW_ICON} from '../../assets/icons/General';
-import AddressList from '../screens/AddressList';
 
 interface Props {
   pageName: string;
-  leftIcon: string;
+  rightIcon: string;
 }
 
-const SecondaryLayout: React.FC<Props> = ({pageName, children, leftIcon}) => {
+const SecondaryLayout: React.FC<Props> = ({pageName, children, rightIcon}) => {
   return (
     <View style={styles.main}>
       <View style={styles.header}>
         <View style={{position: 'absolute', right: 10, top: '30%' }}>
-          <SvgXml xml={leftIcon} />
+          <SvgXml xml={rightIcon} />
         </View>
         <View style={{alignItems: 'center', width: '100%'}}>
           <Text style={styles.headerText}>{pageName}</Text>

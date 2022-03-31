@@ -21,6 +21,7 @@ interface Props {
   style?: StyleProp<ViewStyle>;
   numColumns?: number;
   onPress: () => void;
+  buttonComponent: React.ReactElement;
 }
 
 const ProductList: React.FC<Props> = ({
@@ -28,6 +29,7 @@ const ProductList: React.FC<Props> = ({
   style,
   numColumns,
   onPress,
+  buttonComponent
 }) => {
   return (
     <View style={style}>
@@ -43,25 +45,7 @@ const ProductList: React.FC<Props> = ({
             <HorizontalProductCard
               {...item}
               button={
-                <Button
-                  variant="outlined"
-                  onPress={() => console.log('pressed')}
-                  text={'Add to Cart'}
-                  size={'sm'}
-                  outlinedBorderWidth={0.75}
-                  buttonBackgroundColor={'transparent'}
-                  outlinedBorderColor={COLORS.textColor.mediumGrey}
-                  fontFamily={FONTS.family.primary}
-                  fontSize={FONTS.sizes.h5}
-                  buttonLetterSpacing={-0.5}
-                  fontColor={COLORS.primary.black}
-                  fontWeight={'600'}
-                  leftIcon={
-                    <View style={{marginRight: 10}}>
-                      <SvgXml xml={SMALL_BLACK_BAG_ICON} />
-                    </View>
-                  }
-                />
+                buttonComponent
               }
               topRightIcon={<SvgXml xml={GREY_CLOSE_ICON} />}
             />
