@@ -1,8 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
-import { SvgXml } from 'react-native-svg';
-import { GREY_CLOSE_ICON, SMALL_BLACK_BAG_ICON } from '../../assets/icons/General';
-import { COLORS, FONTS } from '../theme';
+import {View} from 'react-native';
+import {SvgXml} from 'react-native-svg';
+import {
+  GREY_CLOSE_ICON,
+  SMALL_BLACK_BAG_ICON,
+} from '../../assets/icons/General';
+import {COLORS, FONTS} from '../theme';
 import Button from '../ui/Button';
 import HorizontalProductCard from '../ui/HorizontalProductCard';
 import ProductCard from '../ui/ProductCard';
@@ -10,7 +13,12 @@ import ProductCard from '../ui/ProductCard';
 const Home: React.FC = () => {
   return (
     <>
-      <ProductCard />
+      <ProductCard
+        productName="Nike Shoe"
+        productImage="https://static.nike.com/a/images/t_default/lvzcsilw4gmh2gi2hiq4/revolution-5-road-running-shoes-szF7CS.png"
+        productPrice={213.99}
+        productRating={4.9}
+      />
       <HorizontalProductCard
         button={
           <Button
@@ -27,7 +35,7 @@ const Home: React.FC = () => {
             fontColor={COLORS.primary.black}
             fontWeight={'600'}
             leftIcon={
-              <View style={{ marginRight: 10 }}>
+              <View style={{marginRight: 10}}>
                 <SvgXml xml={SMALL_BLACK_BAG_ICON} />
               </View>
             }

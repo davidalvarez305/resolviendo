@@ -6,18 +6,26 @@ import {COLORS, FONTS} from '../theme';
 interface HorizontalProductCardProps {
   button: React.ReactElement;
   topRightIcon: React.ReactElement;
+  productName: string;
+  productImage: string;
+  productPrice: number;
+  productRating: number;
 }
 
 const HorizontalProductCard: React.FC<HorizontalProductCardProps> = ({
   button,
   topRightIcon,
+  productName,
+  productImage,
+  productPrice,
+  productRating,
 }) => {
   return (
     <View style={styles.main}>
       <View style={styles.imageContainer}>
         <Image
           source={{
-            uri: 'https://static.nike.com/a/images/t_default/lvzcsilw4gmh2gi2hiq4/revolution-5-road-running-shoes-szF7CS.png',
+            uri: productImage,
             height: 105,
             width: 100,
           }}
@@ -25,7 +33,7 @@ const HorizontalProductCard: React.FC<HorizontalProductCardProps> = ({
       </View>
       <View style={{width: '85%'}}>
         <View style={styles.titleContainer}>
-          <Text style={styles.productName}>Nike Shoe</Text>
+          <Text style={styles.productName}>{productName}</Text>
           {topRightIcon}
         </View>
         <View style={styles.details}>
@@ -34,11 +42,11 @@ const HorizontalProductCard: React.FC<HorizontalProductCardProps> = ({
               style={{...styles.productPrice, color: COLORS.primary.softPink}}>
               $
             </Text>
-            <Text style={styles.productPrice}>213.99</Text>
+            <Text style={styles.productPrice}> {productPrice}</Text>
           </View>
           <View style={styles.productElements}>
             <SvgXml xml={YELLOW_STAR_ICON} />
-            <Text style={styles.productRating}>4.9</Text>
+            <Text style={styles.productRating}>{productRating}</Text>
           </View>
         </View>
         <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
@@ -51,7 +59,7 @@ const HorizontalProductCard: React.FC<HorizontalProductCardProps> = ({
 
 const styles = StyleSheet.create({
   main: {
-    width: '80%',
+    width: '100%',
     flexDirection: 'row'
   },
   imageContainer: {

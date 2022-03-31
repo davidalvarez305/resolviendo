@@ -1,12 +1,10 @@
-import React, {useContext, useState} from 'react';
-import {LARGE_SEARCH_ICON} from '../../assets/icons/General';
-import HorizontalProductList from '../components/HorizontalProductList';
-import {LanguageContext} from '../context/LanguageContext';
-import SecondaryLayout from '../layouts/SecondaryLayout';
-const Favorites: React.FC = ({}) => {
+import React, { useState } from 'react';
+import ProductList from '../components/ProductList';
+import SettingsLayout from '../layouts/SettingsLayout';
+import ProductDetail from './ProductDetail';
+
+const CategoryList: React.FC = ({}) => {
   const [showProductDetail, setShowProductDetail] = useState(false);
-  const {language} = useContext(LanguageContext);
-  const isSpanish = language === 'Spanish';
   const products = [
     {
       productName: 'Nike Shoe',
@@ -51,16 +49,22 @@ const Favorites: React.FC = ({}) => {
       productRating: 4.5,
     },
   ];
+
+  if (showProductDetail) {
+      return (
+          <ProductDetail setShowProductDetail={setShowProductDetail} />
+      )
+  }
+
   return (
-    <SecondaryLayout
-      pageName={isSpanish ? 'Favoritos' : 'Favorites'}
-      leftIcon={LARGE_SEARCH_ICON}>
-      <HorizontalProductList
+    <SettingsLayout pageName={'Category'} onPress={() => console.log('return to home page')} >
+      <ProductList
         products={products}
+        numColumns={2}
         onPress={() => setShowProductDetail(true)}
       />
-    </SecondaryLayout>
+    </SettingsLayout>
   );
 };
 
-export default Favorites;
+export default CategoryList;
