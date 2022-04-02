@@ -12,6 +12,7 @@ import {LanguageContext} from '../context/LanguageContext';
 import ProfileSettingCard from '../ui/ProfileSettingCard';
 import SettingsLayout from '../layouts/SettingsLayout';
 import AddressList from './AddressList';
+import Orders from './Orders';
 
 interface Props {
   setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,6 +22,11 @@ const Settings: React.FC<Props> = ({setShowSettings}) => {
   const {language} = useContext(LanguageContext);
   const isSpanish = language === 'Spanish';
   const [showAddress, setShowAddress] = useState(false);
+  const [showOrders, setShowOrders] = useState(false);
+
+  if (showOrders) {
+    return <Orders setShowOrders={setShowOrders} />;
+  }
 
   if (showAddress) {
     return <AddressList setShowAddress={setShowAddress} />;
@@ -61,7 +67,14 @@ const Settings: React.FC<Props> = ({setShowSettings}) => {
           <React.Fragment key={index}>
             <ProfileSettingCard
               {...opt}
-              onPress={() => setShowAddress(prev => !prev)}
+              onPress={() => {
+                if (index === 0) {
+                  setShowOrders(true);
+                }
+                if (index === 1) {
+                  setShowAddress(true);
+                }
+              }}
             />
           </React.Fragment>
         ))}

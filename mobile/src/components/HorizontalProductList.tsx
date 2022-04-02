@@ -8,11 +8,9 @@ import {
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import {
-  SMALL_BLACK_BAG_ICON,
   GREY_CLOSE_ICON,
 } from '../../assets/icons/General';
-import {COLORS, FONTS} from '../theme';
-import Button from '../ui/Button';
+import {COLORS} from '../theme';
 import HorizontalProductCard from '../ui/HorizontalProductCard';
 import {ProductCardProps} from '../ui/ProductCard';
 

@@ -8,9 +8,15 @@ import AddressList from '../screens/AddressList';
 interface Props {
   pageName: string;
   onPress: React.Dispatch<React.SetStateAction<boolean>>;
+  rightIcon?: React.ReactElement;
 }
 
-const SettingsLayout: React.FC<Props> = ({pageName, onPress, children}) => {
+const SettingsLayout: React.FC<Props> = ({
+  pageName,
+  onPress,
+  children,
+  rightIcon,
+}) => {
   return (
     <View style={styles.main}>
       <View style={styles.header}>
@@ -22,6 +28,7 @@ const SettingsLayout: React.FC<Props> = ({pageName, onPress, children}) => {
         <View style={{alignItems: 'center', width: '100%'}}>
           <Text style={styles.headerText}>{pageName}</Text>
         </View>
+        {rightIcon}
       </View>
       <View>{children}</View>
     </View>
@@ -41,7 +48,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   headerText: {
     fontFamily: FONTS.family.title,
