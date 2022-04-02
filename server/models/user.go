@@ -11,5 +11,4 @@ type User struct {
 }
 
 func main() {
-
 }
