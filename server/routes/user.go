@@ -208,10 +208,13 @@ func Login(c *fiber.Ctx) error {
 		user,
 	}
 
+	id := sessions.Sessions.KeyGenerator()
+
 	cookie := new(fiber.Cookie)
 	cookie.Name = "cub_id"
-	cookie.Value = "test"
-	cookie.Expires = time.Now().Add(24 * time.Hour)
+	cookie.Value = id
+	cookie.Expires = time.Now().Add(24 * 365 * time.Hour)
+	cookie.MaxAge = 1000 * 60 * 60 * 24 * 365
 
 	c.Cookie(cookie)
 
@@ -220,7 +223,7 @@ func Login(c *fiber.Ctx) error {
 		panic(err)
 	}
 
-	sess.Set("cub_id", "test")
+	sess.Set("cub_id", id)
 
 	if err := sess.Save(); err != nil {
 		panic(err)
@@ -250,7 +253,17 @@ func Me(c *fiber.Ctx) error {
 
 func Logout(c *fiber.Ctx) error {
 
+	sess, err := sessions.Sessions.Get(c)
+	if err != nil {
+		panic(err)
+	}
+
+	if err := sess.Destroy(); err != nil {
+		panic(err)
+	}
+
 	c.ClearCookie("cub_id")
+
 	return c.Status(200).JSON(fiber.Map{
 		"data": "Logged out!",
 	})

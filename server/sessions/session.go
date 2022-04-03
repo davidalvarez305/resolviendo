@@ -21,11 +21,11 @@ func Init() {
 		Database:   "fiber",
 		Table:      "fiber_storage",
 		SslMode:    "disable",
-		GCInterval: 10000000 * time.Second,
+		GCInterval: 60 * 60 * 24 * 365 * time.Second,
 	})
 
 	store := session.New(session.Config{
-		Expiration:     1000 * 60 * 60 * 24 * 365,
+		Expiration:     24 * 365 * time.Hour,
 		Storage:        storage,
 		KeyLookup:      "cookie:cub_id",
 		CookieSameSite: "lax",
