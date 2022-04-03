@@ -10,8 +10,11 @@ func Router(app *fiber.App) {
 	app.Get("/api/v1/user", routes.GetUsers)
 	app.Get("/api/v1/user/:id", routes.GetUser)
 	app.Post("/api/v1/user", routes.CreateUser)
-	app.Put("/api/v1/user", routes.UpdateUser)
-	app.Delete("/api/v1/user", routes.DeleteUser)
+	app.Put("/api/v1/user/:id", routes.UpdateUser)
+	app.Delete("/api/v1/user/:id", routes.DeleteUser)
+	app.Post("/api/v1/user/login", routes.Login)
+	app.Post("/api/v1/user/logout", routes.Logout)
+	app.Post("/api/v1/user/change-password", routes.ChangePassword)
 }
 
 func main() {
