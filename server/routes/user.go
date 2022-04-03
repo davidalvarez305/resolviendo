@@ -3,13 +3,14 @@ package routes
 import (
 	"github.com/davidalvarez305/resolviendo/server/database"
 	"github.com/gofiber/fiber/v2"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type User struct {
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
 	Email     string `json:"email"`
-	Password  string `json:"password"`
+	Password  []byte `json:"password"`
 	Phone     string `json:"phone"`
 }
 
@@ -65,6 +66,15 @@ func GetUser(c *fiber.Ctx) error {
 }
 
 func CreateUser(c *fiber.Ctx) error {
+
+	type User struct {
+		FirstName string `json:"first_name"`
+		LastName  string `json:"last_name"`
+		Email     string `json:"email"`
+		Password  string `json:"password"`
+		Phone     string `json:"phone"`
+	}
+
 	var user User
 	err := c.BodyParser(&user)
 
@@ -173,7 +183,18 @@ func Login(c *fiber.Ctx) error {
 		return c.Status(404).JSON(msg)
 	}
 
-	if user.Password != reqBody.Password {
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(reqBody.Password), bcrypt.DefaultCost)
+
+	if err != nil {
+		msg := Data{
+			err.Error(),
+		}
+		return c.Status(500).JSON(msg)
+	}
+
+	err = bcrypt.CompareHashAndPassword(hashedPassword, user.Password)
+
+	if err != nil {
 		msg := Data{
 			"Incorrect password.",
 		}
