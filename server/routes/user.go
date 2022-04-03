@@ -1,10 +1,10 @@
 package routes
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/davidalvarez305/resolviendo/server/database"
+	"github.com/davidalvarez305/resolviendo/server/sessions"
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -215,15 +215,37 @@ func Login(c *fiber.Ctx) error {
 
 	c.Cookie(cookie)
 
-	Sessions.Get()
+	sess, err := sessions.Sessions.Get(c)
+	if err != nil {
+		panic(err)
+	}
+
+	sess.Set("cub_id", "test")
+
+	if err := sess.Save(); err != nil {
+		panic(err)
+	}
 
 	return c.Status(200).JSON(data)
 }
 
 func Me(c *fiber.Ctx) error {
-	cookie := c.Cookies("cub_id")
-	fmt.Println("cookie: ", cookie)
-	return c.Status(200).SendString("Me")
+	sess, err := sessions.Sessions.Get(c)
+	if err != nil {
+		panic(err)
+	}
+
+	k := sess.Get("cub_id")
+
+	if k == nil {
+		return c.Status(404).JSON(fiber.Map{
+			"data": "Not found.",
+		})
+	}
+
+	return c.Status(200).JSON(fiber.Map{
+		"data": "Good to go.",
+	})
 }
 
 func Logout(c *fiber.Ctx) error {

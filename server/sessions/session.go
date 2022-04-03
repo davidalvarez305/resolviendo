@@ -21,7 +21,7 @@ func Init() {
 		Database:   "fiber",
 		Table:      "fiber_storage",
 		SslMode:    "disable",
-		GCInterval: 10 * time.Second,
+		GCInterval: 10000000 * time.Second,
 	})
 
 	store := session.New(session.Config{
