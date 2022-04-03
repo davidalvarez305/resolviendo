@@ -1,8 +1,6 @@
 package routes
 
 import (
-	"time"
-
 	"github.com/davidalvarez305/resolviendo/server/database"
 	"github.com/davidalvarez305/resolviendo/server/sessions"
 	"github.com/gofiber/fiber/v2"
@@ -209,14 +207,6 @@ func Login(c *fiber.Ctx) error {
 	}
 
 	id := sessions.Sessions.KeyGenerator()
-
-	cookie := new(fiber.Cookie)
-	cookie.Name = "cub_id"
-	cookie.Value = id
-	cookie.Expires = time.Now().Add(24 * 365 * time.Hour)
-	cookie.MaxAge = 1000 * 60 * 60 * 24 * 365
-
-	c.Cookie(cookie)
 
 	sess, err := sessions.Sessions.Get(c)
 	if err != nil {
