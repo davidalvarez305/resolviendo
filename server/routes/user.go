@@ -1,32 +1,24 @@
 package routes
 
 import (
-	"fmt"
-
+	"github.com/davidalvarez305/resolviendo/server/database"
 	"github.com/gofiber/fiber/v2"
 )
 
 type User struct {
-	id        uint   `json:"id"`
-	firstName string `json:"first_name"`
-	lastName  string `json:"last_name"`
-	email     string `json:"email"`
-	password  string `json:"password"`
-	phone     string `json:"phone"`
+	ID        uint   `json:"id"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	Email     string `json:"email"`
+	Password  string `json:"password"`
+	Phone     string `json:"phone"`
 }
 
 func GetUsers(c *fiber.Ctx) error {
-	query := `SELECT * FROM users;`
+	var user User
+	database.DB.First(&user)
 
-	rows, err := database.db.Query(query)
-	if err != nil {
-		return c.Status(500).JSON(err.Error())
-	}
-	defer rows.Close()
-
-	fmt.Println("rows", rows)
-
-	return c.Status(200).JSON("GetUsers Route")
+	return c.Status(200).JSON("Users")
 }
 
 func GetUser(c *fiber.Ctx) error {

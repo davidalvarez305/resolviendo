@@ -12,7 +12,9 @@ import (
 	"github.com/davidalvarez305/resolviendo/server/models"
 )
 
-var db *gorm.DB
+type DBInstance = *gorm.DB
+
+var DB DBInstance
 
 type connection struct {
 	Host     string
@@ -47,6 +49,7 @@ func Connect() {
 
 	db.AutoMigrate(&models.User{})
 
+	DB = db
 }
 
 func connToString(info connection) string {
