@@ -1,6 +1,9 @@
 package routes
 
 import (
+	"fmt"
+	"time"
+
 	"github.com/davidalvarez305/resolviendo/server/database"
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
@@ -205,12 +208,30 @@ func Login(c *fiber.Ctx) error {
 		user,
 	}
 
+	cookie := new(fiber.Cookie)
+	cookie.Name = "cub_id"
+	cookie.Value = "test"
+	cookie.Expires = time.Now().Add(24 * time.Hour)
+
+	c.Cookie(cookie)
+
+	Sessions.Get()
+
 	return c.Status(200).JSON(data)
 }
 
-func Logout(c *fiber.Ctx) error {
-	return c.Status(200).SendString("Logout")
+func Me(c *fiber.Ctx) error {
+	cookie := c.Cookies("cub_id")
+	fmt.Println("cookie: ", cookie)
+	return c.Status(200).SendString("Me")
+}
 
+func Logout(c *fiber.Ctx) error {
+
+	c.ClearCookie("cub_id")
+	return c.Status(200).JSON(fiber.Map{
+		"data": "Logged out!",
+	})
 }
 
 func ChangePassword(c *fiber.Ctx) error {
