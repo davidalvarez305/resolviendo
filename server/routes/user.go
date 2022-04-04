@@ -216,6 +216,14 @@ func Logout(c *fiber.Ctx) error {
 		panic(err)
 	}
 
+	k := sess.Get("cub_id")
+
+	if k == nil {
+		return c.Status(404).JSON(fiber.Map{
+			"error": "Not found.",
+		})
+	}
+
 	if err := sess.Destroy(); err != nil {
 		panic(err)
 	}
