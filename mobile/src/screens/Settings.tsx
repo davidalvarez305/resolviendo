@@ -14,8 +14,7 @@ import SettingsLayout from '../layouts/SettingsLayout';
 import AddressList from './AddressList';
 import Orders from './Orders';
 import {FONTS} from '../theme';
-import useRequest from '../hooks/useRequest';
-import {API} from '../utils/constants';
+import { AuthContext } from '../context/AuthContext';
 
 interface Props {
   setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
@@ -26,20 +25,7 @@ const Settings: React.FC<Props> = ({setShowSettings}) => {
   const isSpanish = language === 'Spanish';
   const [showAddress, setShowAddress] = useState(false);
   const [showOrders, setShowOrders] = useState(false);
-
-  const {makeRequest} = useRequest();
-
-  function Logout() {
-    makeRequest(
-      {
-        url: `${API}/user/logout`,
-        method: 'POST',
-      },
-      res => {
-        console.log(res.data);
-      },
-    );
-  }
+  const { Logout } = useContext(AuthContext);
 
   if (showOrders) {
     return <Orders setShowOrders={setShowOrders} />;

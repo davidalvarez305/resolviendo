@@ -9,12 +9,53 @@ import Store from '../screens/Store';
 import {SvgXml} from 'react-native-svg';
 import {LanguageContext} from '../context/LanguageContext';
 import { HEART_ICON, HOME_ICON, PROFILE_ICON, SHOPPING_CART_ICON, SEARCH_ICON, MONITOR_ICON } from '../../assets/icons/General';
+import { AuthContext } from '../context/AuthContext';
+import ForgotPassword from '../screens/ForgotPassword';
+import Login from '../screens/Login';
+import Register from '../screens/Register';
 
 const Tab = createBottomTabNavigator();
 
 const Nav: React.FC = () => {
   const {language} = useContext(LanguageContext);
+  const {isLoggedIn} = useContext(AuthContext);
   const isSpanish = language === 'Spanish';
+
+  if (!isLoggedIn) {
+    return (
+      <Tab.Navigator screenOptions={{headerShown: false}}>
+        <Tab.Screen
+          name="Login"
+          options={{
+            title: isSpanish ? 'Iniciar' : 'Login',
+            tabBarIcon: () => <SvgXml xml={HOME_ICON} width="85%" height="85%" />,
+          }}
+          component={Login}
+        />
+        <Tab.Screen
+          name="Register"
+          options={{
+            title: isSpanish ? 'Registrarse' : 'Register',
+            tabBarIcon: () => (
+              <SvgXml xml={SEARCH_ICON} width="85%" height="85%" />
+            ),
+          }}
+          component={Register}
+        />
+        <Tab.Screen
+          name="Change Password"
+          options={{
+            title: isSpanish ? 'Cambiar Contraseña' : 'Change Password',
+            tabBarIcon: () => (
+              <SvgXml xml={HEART_ICON} width="85%" height="85%" />
+            ),
+          }}
+          component={ForgotPassword}
+        />
+      </Tab.Navigator>
+    );
+  }
+
   return (
     <Tab.Navigator screenOptions={{headerShown: false}}>
       <Tab.Screen

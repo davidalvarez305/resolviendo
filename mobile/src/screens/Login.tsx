@@ -8,17 +8,17 @@ import Button from '../ui/Button';
 import Checkbox from '../ui/Checkbox';
 import useRequest from '../hooks/useRequest';
 import {API} from '../utils/constants';
-import isAuth from '../hooks/isAuth';
+import {AuthContext} from '../context/AuthContext';
 
 const Login = () => {
-  isAuth();
   const {language} = useContext(LanguageContext);
   const isSpanish = language === 'Spanish';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
-  const {isLoading, error, makeRequest} = useRequest();
+  const {isLoading, makeRequest} = useRequest();
   const [feedback, setFeedback] = useState('');
+  const {Login} = useContext(AuthContext);
 
   function handleLogin() {
     makeRequest(
@@ -45,7 +45,7 @@ const Login = () => {
             setFeedback(res.data.error);
           }
         } else {
-          console.log(res.data.data);
+          Login(true);
         }
       },
     );
