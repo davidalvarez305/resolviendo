@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 import useRequest from './useRequest';
 import {API} from '../utils/constants';
-import * as SecureStore from "expo-secure-store";
 
 const isAuth = () => {
   const {makeRequest} = useRequest();
@@ -13,9 +12,7 @@ const isAuth = () => {
         url: `${API}/user/me`,
       },
       res => {
-        if (res.data.data === 'Not found.') {
-          setIsLoggedIn(false);
-        } else {
+        if (res.data.data) {
           setIsLoggedIn(true);
         }
       },

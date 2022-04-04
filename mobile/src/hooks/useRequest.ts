@@ -17,6 +17,7 @@ const useRequest = () => {
       method: config.method ? config.method : undefined,
       headers: config.headers ? config.headers : undefined,
       data: config.data ? config.data : null,
+      withCredentials: true,
       validateStatus: function (status) {
         return status < 500;
       },

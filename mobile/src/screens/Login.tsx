@@ -8,9 +8,10 @@ import Button from '../ui/Button';
 import Checkbox from '../ui/Checkbox';
 import useRequest from '../hooks/useRequest';
 import {API} from '../utils/constants';
-import * as SecureStore from 'expo-secure-store';
+import isAuth from '../hooks/isAuth';
 
 const Login = () => {
+  isAuth();
   const {language} = useContext(LanguageContext);
   const isSpanish = language === 'Spanish';
   const [email, setEmail] = useState('');
@@ -18,10 +19,6 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const {isLoading, error, makeRequest} = useRequest();
   const [feedback, setFeedback] = useState('');
-
-  async function saveCredentials(id: string) {
-    await SecureStore.setItemAsync('cub_id', id);
-  }
 
   function handleLogin() {
     makeRequest(
@@ -34,21 +31,21 @@ const Login = () => {
         },
       },
       res => {
-        if (res.data.error.includes('Incorrect e-mail')) {
+        if (res.data.error === 'Incorrect e-mail.') {
           if (isSpanish) {
             setFeedback('Usuario incorrecto.');
           } else {
             setFeedback(res.data.error);
           }
         }
-        if (res.data.error.includes('Incorrect password')) {
+        if (res.data.error === 'Incorrect password.') {
           if (isSpanish) {
             setFeedback('Contraseña incorrecta.');
           } else {
             setFeedback(res.data.error);
           }
         } else {
-          saveCredentials(res.data.data);
+          console.log(res.data.data);
         }
       },
     );

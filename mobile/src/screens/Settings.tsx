@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import React, {useContext, useState} from 'react';
 import {
   HELP_ICON,
@@ -13,6 +13,9 @@ import ProfileSettingCard from '../ui/ProfileSettingCard';
 import SettingsLayout from '../layouts/SettingsLayout';
 import AddressList from './AddressList';
 import Orders from './Orders';
+import {FONTS} from '../theme';
+import useRequest from '../hooks/useRequest';
+import {API} from '../utils/constants';
 
 interface Props {
   setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,6 +26,20 @@ const Settings: React.FC<Props> = ({setShowSettings}) => {
   const isSpanish = language === 'Spanish';
   const [showAddress, setShowAddress] = useState(false);
   const [showOrders, setShowOrders] = useState(false);
+
+  const {makeRequest} = useRequest();
+
+  function Logout() {
+    makeRequest(
+      {
+        url: `${API}/user/logout`,
+        method: 'POST',
+      },
+      res => {
+        console.log(res.data);
+      },
+    );
+  }
 
   if (showOrders) {
     return <Orders setShowOrders={setShowOrders} />;
@@ -79,6 +96,11 @@ const Settings: React.FC<Props> = ({setShowSettings}) => {
           </React.Fragment>
         ))}
       </View>
+      <TouchableOpacity style={{alignItems: 'center'}} onPress={() => Logout()}>
+        <Text style={{color: '#EB5757', fontSize: FONTS.sizes.h4}}>
+          {isSpanish ? 'Terminar Sesión' : 'Logout'}
+        </Text>
+      </TouchableOpacity>
     </SettingsLayout>
   );
 };
