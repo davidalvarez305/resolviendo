@@ -1,0 +1,1 @@
+export const API = "http://10.0.2.2:4006/api/v1"

@@ -15,35 +15,20 @@ type User struct {
 	Phone     string `json:"phone"`
 }
 
-type Data struct {
-	Data string `json:"data"`
-}
-
-type UsersResponse struct {
-	Data []User `json:"data"`
-}
-
-type UserResponse struct {
-	Data User `json:"data"`
-}
-
 func GetUsers(c *fiber.Ctx) error {
 	var users []User
 
 	result := database.DB.Raw("SELECT * FROM users;").Scan(&users)
 
 	if result.Error != nil {
-		msg := Data{
-			"Not found.",
-		}
-		return c.Status(404).JSON(msg)
+		return c.Status(404).JSON(fiber.Map{
+			"error": "Not found.",
+		})
 	}
 
-	res := UsersResponse{
-		users,
-	}
-
-	return c.Status(200).JSON(res)
+	return c.Status(200).JSON(fiber.Map{
+		"data": users,
+	})
 }
 
 func GetUser(c *fiber.Ctx) error {
@@ -53,17 +38,14 @@ func GetUser(c *fiber.Ctx) error {
 	result := database.DB.Where("id = ?", id).First(&user)
 
 	if result.Error != nil {
-		msg := Data{
-			"Not found.",
-		}
-		return c.Status(404).JSON(msg)
+		return c.Status(404).JSON(fiber.Map{
+			"error": "Not found.",
+		})
 	}
 
-	res := UserResponse{
-		user,
-	}
-
-	return c.Status(200).JSON(res)
+	return c.Status(200).JSON(fiber.Map{
+		"data": user,
+	})
 }
 
 func CreateUser(c *fiber.Ctx) error {
@@ -79,24 +61,23 @@ func CreateUser(c *fiber.Ctx) error {
 	var user User
 	err := c.BodyParser(&user)
 
-	msg := Data{
-		"Bad Request",
-	}
-
 	result := database.DB.Create(user)
 
 	if result.Error != nil {
-		msg := Data{
-			"Bad Input.",
-		}
-		return c.Status(400).JSON(msg)
+		return c.Status(400).JSON(fiber.Map{
+			"error": "Bad Input.",
+		})
 	}
 
 	if err != nil {
-		return c.Status(400).JSON(msg)
+		return c.Status(400).JSON(fiber.Map{
+			"error": "Bad Request.",
+		})
 	}
 
-	return c.Status(201).JSON(user)
+	return c.Status(201).JSON(fiber.Map{
+		"data": user,
+	})
 }
 
 func UpdateUser(c *fiber.Ctx) error {
@@ -105,20 +86,18 @@ func UpdateUser(c *fiber.Ctx) error {
 	err := c.BodyParser(&body)
 
 	if err != nil {
-		msg := Data{
-			"Bad Request",
-		}
-		return c.Status(400).JSON(msg)
+		return c.Status(400).JSON(fiber.Map{
+			"error": "Bad Request.",
+		})
 	}
 
 	id := c.Params("id")
 	result := database.DB.Where("id = ?", id).First(&user)
 
 	if result.Error != nil {
-		msg := Data{
-			"Not found.",
-		}
-		return c.Status(404).JSON(msg)
+		return c.Status(404).JSON(fiber.Map{
+			"error": "Not Found.",
+		})
 	}
 
 	user.Email = body.Email
@@ -129,11 +108,9 @@ func UpdateUser(c *fiber.Ctx) error {
 
 	database.DB.Where("id = ?", id).Save(&user)
 
-	res := UserResponse{
-		user,
-	}
-
-	return c.Status(201).JSON(res)
+	return c.Status(201).JSON(fiber.Map{
+		"data": user,
+	})
 }
 
 func DeleteUser(c *fiber.Ctx) error {
@@ -143,19 +120,16 @@ func DeleteUser(c *fiber.Ctx) error {
 	result := database.DB.Where("id = ?", id).First(&user)
 
 	if result.Error != nil {
-		msg := Data{
-			"Not found.",
-		}
-		return c.Status(404).JSON(msg)
+		return c.Status(404).JSON(fiber.Map{
+			"error": "Not Found.",
+		})
 	}
 
 	database.DB.Where("id = ?", id).Delete(&user)
 
-	msg := Data{
-		"Deleted.",
-	}
-
-	return c.Status(200).JSON(msg)
+	return c.Status(200).JSON(fiber.Map{
+		"data": "Deleted.",
+	})
 }
 
 func Login(c *fiber.Ctx) error {
@@ -169,41 +143,33 @@ func Login(c *fiber.Ctx) error {
 	err := c.BodyParser(&reqBody)
 
 	if err != nil {
-		msg := Data{
-			"Bad Input.",
-		}
-		return c.Status(400).JSON(msg)
+		return c.Status(400).JSON(fiber.Map{
+			"error": "Bad Input.",
+		})
 	}
 
 	result := database.DB.Where("email = ?", &reqBody.Email).First(&user)
 
 	if result.Error != nil {
-		msg := Data{
-			"Incorrect e-mail.",
-		}
-		return c.Status(404).JSON(msg)
+		return c.Status(404).JSON(fiber.Map{
+			"error": "Incorrect e-mail.",
+		})
 	}
 
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(reqBody.Password), bcrypt.DefaultCost)
 
 	if err != nil {
-		msg := Data{
-			err.Error(),
-		}
-		return c.Status(500).JSON(msg)
+		return c.Status(500).JSON(fiber.Map{
+			"error": err.Error(),
+		})
 	}
 
 	err = bcrypt.CompareHashAndPassword(hashedPassword, user.Password)
 
 	if err != nil {
-		msg := Data{
-			"Incorrect password.",
-		}
-		return c.Status(400).JSON(msg)
-	}
-
-	data := UserResponse{
-		user,
+		return c.Status(400).JSON(fiber.Map{
+			"error": "Incorrect password.",
+		})
 	}
 
 	id := sessions.Sessions.KeyGenerator()
@@ -219,7 +185,9 @@ func Login(c *fiber.Ctx) error {
 		panic(err)
 	}
 
-	return c.Status(200).JSON(data)
+	return c.Status(200).JSON(fiber.Map{
+		"data": id,
+	})
 }
 
 func Me(c *fiber.Ctx) error {
@@ -232,12 +200,12 @@ func Me(c *fiber.Ctx) error {
 
 	if k == nil {
 		return c.Status(404).JSON(fiber.Map{
-			"data": "Not found.",
+			"error": "Not found.",
 		})
 	}
 
 	return c.Status(200).JSON(fiber.Map{
-		"data": "Good to go.",
+		"data": k,
 	})
 }
 
@@ -252,8 +220,6 @@ func Logout(c *fiber.Ctx) error {
 		panic(err)
 	}
 
-	c.ClearCookie("cub_id")
-
 	return c.Status(200).JSON(fiber.Map{
 		"data": "Logged out!",
 	})
@@ -261,5 +227,4 @@ func Logout(c *fiber.Ctx) error {
 
 func ChangePassword(c *fiber.Ctx) error {
 	return c.Status(200).SendString("Change Password")
-
 }

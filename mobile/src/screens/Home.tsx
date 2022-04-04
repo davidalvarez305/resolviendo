@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
-import ProductDetail from '../components/ProductDetail';
+import React from 'react';
+import {View, Text} from 'react-native';
+import isAuth from '../hooks/isAuth';
+import Login from './Login';
 
 const Home: React.FC = () => {
-  const [showProductDetail, setShowProductDetail] = useState(false);
+  const {isLoggedIn} = isAuth();
   return (
-    <ProductDetail productName={'Schwinn Bike'} setShowProductDetail={setShowProductDetail} />
+    <View>
+      {isLoggedIn ? <Text>Logged in!</Text> : <Login />}
+    </View>
   );
 };
 

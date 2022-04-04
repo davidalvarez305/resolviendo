@@ -5,6 +5,7 @@ import (
 	"github.com/davidalvarez305/resolviendo/server/routes"
 	"github.com/davidalvarez305/resolviendo/server/sessions"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/session"
 )
 
@@ -24,6 +25,9 @@ var Sessions *session.Store
 
 func main() {
 	app := fiber.New()
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "http://localhost:4006",
+	}))
 	database.Connect()
 	sessions.Init()
 	Router(app)
